@@ -1,0 +1,77 @@
+.role-selection-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.role-selection-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 3rem;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.role-selection-card h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+  font-size: 1.125rem;
+}
+
+.role-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.role-card {
+  background: var(--bg);
+  border: 3px solid transparent;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.role-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.role-card.student-card:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.role-card.teacher-card:hover {
+  border-color: #8b5cf6;
+  background: #f5f3ff;
+}
+
+.role-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.role-card h2 {
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.role-card p {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}

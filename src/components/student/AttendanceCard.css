@@ -1,0 +1,145 @@
+.attendance-card {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+
+.attendance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.card-header h3 {
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+.subject-badge {
+  background: var(--primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.attendance-stats {
+  margin-bottom: 1.5rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row .present {
+  color: var(--secondary);
+}
+
+.stat-row .absent {
+  color: var(--danger);
+}
+
+.percentage-display {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.percentage-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.percentage-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.percentage-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.btn-details {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-details:hover {
+  background: var(--border);
+}
+
+.attendance-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border);
+}
+
+.attendance-details h4 {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.attendance-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.attendance-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--bg);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.attendance-record .date {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.attendance-record .status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.attendance-record .status.present {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.attendance-record .status.absent {
+  background: #fee2e2;
+  color: #991b1b;
+}

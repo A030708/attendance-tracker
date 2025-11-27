@@ -1,0 +1,14 @@
+.create-class {
+  max-width: 600px;
+}
+
+.create-class h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.class-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
