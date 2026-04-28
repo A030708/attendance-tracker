@@ -36,6 +36,9 @@ A full-stack attendance management system built with React, Vite, and Supabase.
 ![Student Dashboard](docs/screenshorts/student%20dashboard.png)
 ![Student Classes](docs/screenshorts/student%20classes.png)
 
+### Database Structure
+![Database Schema](docs/screenshorts/database.png)
+
 ---
 
 ## Tech Stack
