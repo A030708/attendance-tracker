@@ -1,0 +1,820 @@
+/* src/auth/OrganizationLogin.css */
+.org-auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.org-auth-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.org-auth-header {
+  text-align: center;
+  padding: 40px 40px 20px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  position: relative;
+}
+
+.org-auth-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 40px;
+  background: #4f46e5;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.org-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.org-auth-header h1 {
+  margin: 10px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.org-subtitle {
+  opacity: 0.9;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 30px auto 20px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #5900ff00;
+  color: #0369a1;
+  border: 2px solid #07408196;
+}
+
+.role-badge.signup {
+  background: #f0f7ff;
+  color: #1d4ed8;
+  border-color: #dbeafe;
+}
+
+.role-badge i {
+  font-size: 16px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 40px 25px;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.alert-error {
+  background: #fef2f2;
+  color: #dc2626;
+  border-left: 4px solid #dc2626;
+}
+
+.alert-success {
+  background: #f0fdf4;
+  color: #16a34a;
+  border-left: 4px solid #16a34a;
+}
+
+.alert i {
+  font-size: 18px;
+}
+
+.org-code-display {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  margin: 0 40px 30px;
+  padding: 25px;
+  border-radius: 15px;
+  border: 2px dashed #38bdf8;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.org-code-display h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0369a1;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 2px solid #7dd3fc;
+  margin-bottom: 15px;
+}
+
+.code-box code {
+  font-family: 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: bold;
+  color: #0c4a6e;
+  letter-spacing: 2px;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #0284c7;
+  transform: translateY(-2px);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.code-instruction {
+  font-size: 13px;
+  color: #475569;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.org-auth-form {
+  padding: 0 40px 30px;
+}
+
+.org-auth-form.has-code {
+  padding-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group i {
+  color: #4f46e5;
+  width: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 16px 20px 16px 45px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.form-group input.with-icon {
+  background-image: none;
+  padding-left: 50px;
+  position: relative;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+.auth-button:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.auth-button.loading {
+  background: #6b7280;
+}
+
+.org-auth-footer {
+  padding: 30px 40px 40px;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.toggle-section p {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+.toggle-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-left: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.toggle-mode-btn:hover {
+  background: #f3f4f6;
+  transform: translateX(5px);
+}
+
+.toggle-mode-btn .signup-arrow {
+  transform: rotate(-45deg);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #9ca3af;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider span {
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  background: rgba(150, 107, 230, 0.295);
+  color: #5d7199;
+  border: 2px solid #a1a1a1;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateX(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .org-auth-container {
+    padding: 15px;
+  }
+  
+  .org-auth-header,
+  .org-auth-form,
+  .org-auth-footer,
+  .org-code-display,
+  .alert {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  
+  .org-auth-header h1 {
+    font-size: 24px;
+  }
+  
+  .code-box {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .copy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Password strength indicator */
+.password-strength {
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.strength-indicator {
+  height: 100%;
+  width: 0%;
+  transition: all 0.3s ease;
+}
+
+.strength-weak {
+  width: 33%;
+  background: #ef4444;
+}
+
+.strength-medium {
+  width: 66%;
+  background: #f59e0b;
+}
+
+.strength-strong {
+  width: 100%;
+  background: #10b981;
+}/* Add to src/auth/OrganizationLogin.css */
+
+.security-badge {
+  background: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.validation-note {
+  color: #666;
+  font-size: 12px;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.two-factor-note {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1976d2;
+}
+
+.two-factor-note i {
+  font-size: 18px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}/* Add to src/auth/OrganizationLogin.css */
+
+.security-badge {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.validation-note {
+  color: #666;
+  font-size: 12px;
+  margin-top: 4px;
+  font-style: italic;
+  display: block;
+}
+
+.two-factor-note {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1976d2;
+  font-size: 14px;
+}
+
+.two-factor-note i {
+  font-size: 18px;
+  color: #1976d2;
+}
+
+.code-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.secondary-action-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.secondary-action-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.security-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+}
+
+.security-info h4 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.security-info ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #555;
+  font-size: 13px;
+}
+
+.security-info li {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+/* Copy button animation */
+.copy-btn {
+  transition: all 0.3s ease;
+}
+
+.code-instruction {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* Loading state for form */
+.auth-button.loading {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Disabled state for inputs */
+.with-icon:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Alert styles */
+.alert {
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-error {
+  background: #fde8e8;
+  color: #c53030;
+  border: 1px solid #f56565;
+}
+
+.alert-success {
+  background: #c6f6d5;
+  color: #22543d;
+  border: 1px solid #68d391;
+}
+
+.alert i {
+  margin-top: 2px;
+}
+
+/* Form with code */
+.org-auth-form.has-code {
+  opacity: 0.7;
+  pointer-events: none;
+}/* Add to src/auth/OrganizationLogin.css */
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.error-content strong {
+  font-weight: 600;
+}
+
+.error-help {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.error-help i {
+  color: #f39c12;
+}
+
+.code-instruction ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+.code-instruction li {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Loading overlay */
+.auth-button.loading {
+  position: relative;
+}
+
+.auth-button.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: inherit;
+}
+
+/* Form group disabled state */
+.form-group input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+/* Success message styling */
+.alert-success {
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .org-auth-card {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .security-info ul {
+    font-size: 12px;
+  }
+}
+
+/* Animation for alerts */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert {
+  animation: fadeIn 0.3s ease;
+}/* Add to OrganizationLogin.css */
+
+.error-suggestion {
+  margin-top: 10px;
+}
+
+.suggestion-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.suggestion-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.tertiary-action-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.tertiary-action-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.code-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.success-content {
+  line-height: 1.6;
+}
+
+/* Input max length indicator */
+.validation-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.char-count {
+  font-size: 11px;
+  color: #888;
+}

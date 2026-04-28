@@ -1,28 +1,56 @@
 import { supabase } from "../../lib/supabase.js";
-
-import { useNavigate } from 'react-router-dom';
-import './Navbar.css';
+import "./Navbar.css";
 
 const Navbar = ({ user, role }) => {
-  const navigate = useNavigate();
-
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    localStorage.removeItem('selectedRole');
-    navigate('/');
+    // Simple proof that click works
+   
+
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {
+      console.error("Supabase signOut error:", e);
+    } finally {
+      // Clear any app + supabase-related storage
+      try {
+        Object.keys(localStorage).forEach((key) => {
+          if (key.startsWith("sb-") || key.toLowerCase().includes("supabase")) {
+            localStorage.removeItem(key);
+          }
+        });
+      } catch {}
+      localStorage.removeItem("selectedRole");
+
+      try {
+        sessionStorage.clear();
+      } catch {}
+
+      // Hard reload to role selection
+      window.location.href = "/";
+    }
   };
+
+  const icon =
+    role === "student"
+      ? "✍🏻"
+      : role === "teacher"
+      ? "👩🏻‍💻"
+      : role === "org_admin"
+      ? "🏫"
+      : "👤";
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <h2>📚 Attendance Tracker</h2>
+      <div className="navbar-left">
+        <h2>🗓️ Attendance Tracker</h2>
       </div>
-      <div className="navbar-user">
-        <span className="user-info">
-          {role === 'student' ? '🎓' : '👨‍🏫'} {user?.email}
+
+      <div className="navbar-right">
+        <span className="navbar-user">
+          {icon} {user?.email || ""}
         </span>
-        <button onClick={handleLogout} className="btn-logout">
-          Logout
+        <button className="btn-logout" onClick={handleLogout}>
+          LOGOUT
         </button>
       </div>
     </nav>

@@ -1,86 +1,90 @@
-// src/components/shared/ProtectedRoute.jsx
-import { useEffect, useState } from "react";
+// src/components/shared/ProtectedRoute.jsx - UPDATED VERSION
 import { Navigate, useLocation } from "react-router-dom";
-import { supabase } from "../../lib/supabase.js";
+import { supabase } from "../../lib/supabase";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children, requiredRole }) => {
-  const [loading, setLoading] = useState(true);
-  const [isAllowed, setIsAllowed] = useState(false);
   const location = useLocation();
+  const [authorized, setAuthorized] = useState(null); // null = loading
+  const [requires2FA, setRequires2FA] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
+    const checkAccess = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    const checkUser = async () => {
-      setLoading(true);
-
-      try {
-        // get current user (client-side)
-        const {
-          data: { user },
-          error: userError,
-        } = await supabase.auth.getUser();
-
-        if (userError) {
-          console.error("supabase getUser error:", userError);
-          if (mounted) setIsAllowed(false);
-          return;
-        }
-
-        if (!user) {
-          // not logged in
-          if (mounted) setIsAllowed(false);
-          return;
-        }
-
-        // fetch profile role
-        const { data: profile, error: profileError } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", user.id)
-          .single();
-
-        if (profileError) {
-          // If profile doesn't exist or permission denied, deny access
-          console.error("profile fetch error:", profileError);
-          if (mounted) setIsAllowed(false);
-          return;
-        }
-
-        const userRole = profile?.role || null;
-
-        if (requiredRole) {
-          if (userRole === requiredRole) {
-            if (mounted) setIsAllowed(true);
-          } else {
-            if (mounted) setIsAllowed(false);
-          }
-        } else {
-          // no required role -> any authenticated user allowed
-          if (mounted) setIsAllowed(true);
-        }
-      } catch (err) {
-        console.error("ProtectedRoute error:", err);
-        if (mounted) setIsAllowed(false);
-      } finally {
-        if (mounted) setLoading(false);
+      if (!user) {
+        setAuthorized(false);
+        return;
       }
+
+      const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("role, two_factor_enabled")
+        .eq("id", user.id)
+        .single();
+
+      if (error || !profile) {
+        setAuthorized(false);
+        return;
+      }
+
+      if (requiredRole && profile.role !== requiredRole) {
+        setAuthorized(false);
+        return;
+      }
+
+      // Special handling for org_admin: check 2FA status
+      if (requiredRole === "org_admin") {
+        // Store 2FA status in session storage for this check
+        const is2FAVerified = sessionStorage.getItem(`2fa_verified_${user.id}`) === 'true';
+        
+        if (profile.two_factor_enabled && !is2FAVerified) {
+          // User has 2FA enabled but hasn't verified in this session
+          setRequires2FA(true);
+          setAuthorized(false);
+          return;
+        }
+      }
+
+      setAuthorized(true);
     };
 
-    checkUser();
+    checkAccess();
+  }, [requiredRole]);
 
-    return () => {
-      mounted = false;
-    };
-  }, [requiredRole, location]);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
+  if (authorized === null) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Verifying access...</p>
+      </div>
+    );
   }
 
-  if (!isAllowed) {
-    // redirect to login and preserve current location
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (requires2FA) {
+    // Redirect to 2FA verification
+    return (
+      <Navigate
+        to="/organization/verify-2fa"
+        state={{ from: location }}
+        replace
+      />
+    );
+  }
+
+  if (!authorized) {
+    const redirectPath =
+      requiredRole === "org_admin" ? "/organization/login" : "/login";
+
+    return (
+      <Navigate
+        to={redirectPath}
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
   return children;

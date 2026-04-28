@@ -8,20 +8,65 @@
 }
 
 .role-selection-card {
-  background: white;
-  border-radius: 1rem;
+  position: relative;
+  font-family:Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #71c4c7 0%, #f3f4ff 100%);
+  border-radius: 2.5rem;
   padding: 3rem;
   max-width: 800px;
   width: 100%;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 30px 45px rgba(0, 0, 0, 0.15),
+    inset 0 0 25px rgba(255, 255, 255, 0.7);
+  overflow: hidden;
 }
 
+/* Bubble effects */
+.role-selection-card::before,
+.role-selection-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(118, 75, 162, 0.18);
+  filter: blur(3px);
+}
+
+/* Large bubble */
+.role-selection-card::before {
+  width: 220px;
+  height: 220px;
+  top: -80px;
+  left: -80px;
+  animation: floatBubble 7s ease-in-out infinite;
+}
+
+/* Small bubble */
+.role-selection-card::after {
+  width: 120px;
+  height: 120px;
+  bottom: -40px;
+  right: -40px;
+  background: rgba(102, 126, 234, 0.18);
+  animation: floatBubble 9s ease-in-out infinite;
+}
+
+/* Heading styling */
 .role-selection-card h1 {
+  position: relative;
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: var(--text);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+/* Shared animation */
+@keyframes floatBubble {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
 
 .subtitle {
   text-align: center;
@@ -53,12 +98,12 @@
 
 .role-card.student-card:hover {
   border-color: #3b82f6;
-  background: #eff6ff;
+  background: #0b5fce;
 }
 
 .role-card.teacher-card:hover {
   border-color: #8b5cf6;
-  background: #f5f3ff;
+  background: #ff4800;
 }
 
 .role-icon {
@@ -74,4 +119,69 @@
 .role-card p {
   color: var(--text-light);
   font-size: 0.875rem;
+}
+/* .org-login-section {
+  margin-top: 2rem;
+  text-align: center;
+} */
+
+.org-login-section {
+    display: block;
+  width: fit-content;
+  margin: 1.2rem auto 0;         /* makes it smaller */
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(118, 75, 162, 0.25);
+  border-radius: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* Hover effect */
+.org-login-section:hover {
+  background: rgba(128, 0, 255, 0.12);
+  border-color: #764ba2;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(118, 75, 162, 0.25);
+}
+
+/* Link styling inside */
+.org-login-section a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #764ba2;
+}
+
+/* Optional subtle glow on hover */
+.org-login-section:hover a {
+  color: #5a3d9a;
+}
+
+
+.org-text {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.org-login-button {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.org-login-button:hover {
+  opacity: 0.8;
+}
+
+/* Optional highlight for selected role */
+.role-card.selected {
+  outline: 2px solid #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }

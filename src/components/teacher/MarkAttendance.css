@@ -68,4 +68,49 @@
   background: var(--danger);
   color: white;
   border-color: var(--danger);
+}/* Add to existing MarkAttendance.css */
+.time-status {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.time-status-open {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.time-status-closed {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
+
+.time-status-icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+.time-status-text {
+  font-size: 0.95em;
+}
+
+.disabled-select,
+.disabled-input,
+.disabled-button {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+.disabled-submit {
+  background-color: #9ca3af !important;
+  cursor: not-allowed !important;
+}
+
+.disabled-submit:hover {
+  background-color: #9ca3af !important;
 }

@@ -1,0 +1,289 @@
+/* src/auth/TwoFactorSetup.css */
+.two-factor-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.two-factor-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+}
+
+.two-factor-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.two-factor-icon {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+.two-factor-header h1 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 28px;
+}
+
+.two-factor-subtitle {
+  color: #666;
+  font-size: 16px;
+  margin: 0;
+}
+
+.two-factor-step {
+  margin: 30px 0;
+}
+
+.two-factor-step h2 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qr-instructions {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.qr-code-container {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: white;
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.manual-secret {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.secret-box {
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  word-break: break-all;
+  text-align: center;
+}
+
+.verify-form {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.code-input {
+  font-size: 32px;
+  letter-spacing: 10px;
+  text-align: center;
+  padding: 15px;
+  width: 200px;
+  border: 2px solid #667eea;
+  border-radius: 10px;
+  outline: none;
+}
+
+.code-hint {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.next-button,
+.verify-button,
+.complete-button,
+.secondary-button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.next-button,
+.verify-button,
+.complete-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.next-button:hover,
+.verify-button:hover,
+.complete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.secondary-button {
+  background: #f8f9fa;
+  color: #666;
+}
+
+.secondary-button:hover {
+  background: #e9ecef;
+}
+
+.backup-warning {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.backup-warning i {
+  color: #f39c12;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.backup-codes-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.backup-codes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.backup-code {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-family: monospace;
+  font-weight: bold;
+  color: #333;
+  border: 1px solid #e0e0e0;
+}
+
+.backup-actions {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.copy-button,
+.download-button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.copy-button {
+  background: #4CAF50;
+  color: white;
+}
+
+.download-button {
+  background: #2196F3;
+  color: white;
+}
+
+.copy-button:hover {
+  background: #45a049;
+}
+
+.download-button:hover {
+  background: #1976D2;
+}
+
+.cancel-section {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cancel-button {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.cancel-button:hover {
+  color: #333;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-error {
+  background: #fde8e8;
+  color: #c53030;
+  border: 1px solid #f56565;
+}
+
+.alert-success {
+  background: #c6f6d5;
+  color: #22543d;
+  border: 1px solid #68d391;
+}

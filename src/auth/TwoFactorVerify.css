@@ -1,0 +1,243 @@
+/* src/auth/TwoFactorVerify.css */
+.two-factor-verify-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.two-factor-verify-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+}
+
+.two-factor-verify-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.two-factor-verify-icon {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 20px;
+}
+
+.two-factor-verify-header h1 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 28px;
+}
+
+.two-factor-verify-subtitle {
+  color: #666;
+  font-size: 16px;
+  margin: 0 0 10px 0;
+}
+
+.user-email {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}
+
+.verify-instructions {
+  text-align: center;
+  margin: 20px 0;
+  color: #555;
+}
+
+.verify-form {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.verify-input {
+  font-size: 28px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  border: 2px solid #667eea;
+  border-radius: 10px;
+  outline: none;
+}
+
+.input-hint {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.toggle-backup {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.toggle-backup-btn {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-backup-btn:hover {
+  text-decoration: underline;
+}
+
+.verify-submit-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.verify-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.verify-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.back-to-login {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.back-to-login-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-login-btn:hover {
+  color: #333;
+}
+
+.help-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.help-section details {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.help-section summary {
+  cursor: pointer;
+  color: #667eea;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.help-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.help-content {
+  margin-top: 15px;
+  color: #555;
+  font-size: 14px;
+}
+
+.help-content ol {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.attempts-remaining {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}/* Add to TwoFactorVerify.css */
+.error-state {
+  text-align: center;
+  padding: 40px;
+}
+
+.error-state i {
+  font-size: 60px;
+  color: #f44336;
+  margin-bottom: 20px;
+}
+
+.error-state h3 {
+  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+}
+
+.error-state p {
+  color: #666;
+  margin: 0 0 30px 0;
+}
+
+.error-state .back-to-login-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.error-state .back-to-login-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+.alert-error {
+  background: #fde8e8;
+  color: #c53030;
+  border: 1px solid #f56565;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.alert-error i {
+  margin-top: 2px;
+}

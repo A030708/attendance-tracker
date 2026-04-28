@@ -1,0 +1,430 @@
+/* src/components/StudentProfileSetup.css */
+.student-profile-setup {
+  margin: 20px 0;
+  padding: 24px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.setup-header h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.setup-subtitle {
+  margin-bottom: 20px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.setup-subtitle strong {
+  color: #ffd700;
+}
+
+.edit-warning {
+  display: block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 215, 0, 0.2);
+  border-left: 4px solid #ffd700;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Alert Styles */
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-error {
+  background: rgba(220, 53, 69, 0.9);
+  border-left: 4px solid #dc3545;
+  color: white;
+}
+
+.alert-warning {
+  background: rgba(255, 193, 7, 0.9);
+  border-left: 4px solid #ffc107;
+  color: #212529;
+}
+
+.alert strong {
+  font-weight: 600;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: white;
+}
+
+.hint {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-weight: normal;
+  margin-top: 4px;
+}
+
+/* Input Styles */
+.form-group input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4dabf7;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.3);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-group input:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: #ff6b6b !important;
+  background: rgba(255, 107, 107, 0.1) !important;
+}
+
+.input-info {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.char-count {
+  font-family: monospace;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.char-count.valid {
+  color: #51cf66;
+  background: rgba(81, 207, 102, 0.1);
+}
+
+.char-count.invalid {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.locked-message {
+  color: #ffd700;
+  font-size: 0.8rem;
+}
+
+/* Current Info Display */
+.current-info {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid #4dabf7;
+}
+
+.current-info p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.current-info code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: #ffd700;
+}
+
+.timestamp {
+  font-size: 0.85rem !important;
+  opacity: 0.8;
+  margin-top: 12px !important;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Form Actions */
+.form-actions {
+  margin-top: 24px;
+}
+
+.save-button {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 160px;
+}
+
+.save-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #40c057 0%, #2f9e44 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #6c757d;
+}
+
+.save-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-note {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* Profile Complete State */
+.profile-setup-complete {
+  padding: 16px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  color: #155724;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.profile-setup-complete p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-profile-setup {
+    padding: 20px 16px;
+  }
+  
+  .form-group input {
+    max-width: 100%;
+  }
+  
+  .save-button {
+    width: 100%;
+    justify-content: center;
+  }
+}/* Add to StudentProfileSetup.css */
+
+/* Validation Summary */
+.validation-summary {
+  margin: 20px 0;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.validation-summary p {
+  margin: 0 0 12px 0;
+  color: white;
+  font-size: 1rem;
+}
+
+.validation-summary ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.validation-summary li {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  list-style-type: none;
+  position: relative;
+  padding-left: 24px;
+}
+
+.validation-summary li:before {
+  content: "○";
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.validation-summary li.valid:before {
+  content: "✓";
+  color: #51cf66;
+}
+
+.validation-summary li.invalid:before {
+  content: "○";
+  color: #ff6b6b;
+}
+
+/* Current Profile Display */
+.current-profile {
+  margin: 24px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.profile-item:last-child {
+  margin-bottom: 0;
+}
+
+.profile-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 4px;
+}
+
+.profile-value {
+  font-size: 1.1rem;
+}
+
+.profile-value code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  color: #ffd700;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Contact Teacher Button */
+.contact-teacher-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4dabf7 0%, #1971c2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-teacher-btn:hover {
+  background: linear-gradient(135deg, #1971c2 0%, #1864ab 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(25, 113, 194, 0.3);
+}
+
+/* Input field styling for full name */
+.form-group input:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: not-allowed;
+}
+
+.form-group input:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.form-group input:not(:disabled):focus {
+  border-color: #4dabf7;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .current-profile {
+    padding: 16px;
+  }
+  
+  .profile-value code {
+    font-size: 1rem;
+    padding: 6px 10px;
+  }
+  
+  .contact-teacher-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

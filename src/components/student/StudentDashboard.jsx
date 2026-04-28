@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase.js";
 import Navbar from "../shared/Navbar";
 import JoinClass from "./JoinClass";
+import StudentProfileSetup from "./StudentProfileSetup"; // 🔹 NEW
 import "./StudentDashboard.css";
 
 export default function StudentDashboard() {
@@ -185,6 +186,9 @@ export default function StudentDashboard() {
           <p>View your classes and track your attendance</p>
         </div>
 
+        {/* 🔹 Ask student to set Register Number if missing */}
+        <StudentProfileSetup />
+
         <div className="tabs">
           <button
             className={activeTab === "classes" ? "tab active" : "tab"}
@@ -206,7 +210,6 @@ export default function StudentDashboard() {
           >
             📈 Attendance
           </button>
-
         </div>
 
         <div className="tab-content">
@@ -230,7 +233,7 @@ export default function StudentDashboard() {
                         {new Date(cls.joined_at).toLocaleString()}
                       </p>
 
-                      {/* NEW: View Attendance button */}
+                      {/* View Attendance button */}
                       <button
                         style={{
                           marginTop: 8,

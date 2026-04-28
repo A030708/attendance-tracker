@@ -1,4 +1,3 @@
-// src/auth/Login.jsx
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import { useNavigate } from "react-router-dom";
@@ -8,20 +7,28 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [organizationCode, setOrganizationCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [role, setRole] = useState(""); // "student" | "teacher" (from RoleSelection)
+  const [role, setRole] = useState(""); // "student" | "teacher"
   const navigate = useNavigate();
 
-  // Load selected role from homepage (only for label + signup metadata)
+  // Load selected role from RoleSelection
   useEffect(() => {
     const selectedRole = localStorage.getItem("selectedRole");
     if (!selectedRole) {
       navigate("/");
       return;
     }
-    setRole(selectedRole); // "student" or "teacher"
+    setRole(selectedRole);
   }, [navigate]);
+
+  // Teachers cannot sign up directly
+  useEffect(() => {
+    if (role === "teacher") {
+      setIsSignUp(false);
+    }
+  }, [role]);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -30,30 +37,82 @@ const Login = () => {
     const cleanEmail = email.trim();
     const cleanPassword = password.trim();
     const cleanName = fullName.trim();
+    const cleanOrgCode = organizationCode.trim().toUpperCase();
 
     try {
-      // -------------------------
-      // SIGN UP
-      // -------------------------
+      // =========================
+      // SIGN UP (STUDENTS ONLY)
+      // =========================
       if (isSignUp) {
+        if (role === "teacher") {
+          alert(
+            "Teachers cannot sign up directly. Your organization admin must create your account."
+          );
+          setLoading(false);
+          return;
+        }
+
         if (!cleanName) {
           alert("Please enter your full name");
           setLoading(false);
           return;
         }
 
-        const { error: signUpError } = await supabase.auth.signUp({
-          email: cleanEmail,
-          password: cleanPassword,
-          options: {
-            data: {
-              full_name: cleanName, // 👈 goes into raw_user_meta_data
-              role: role,           // 👈 "student" or "teacher"
+        if (!cleanOrgCode) {
+          alert("Please enter your organization code");
+          setLoading(false);
+          return;
+        }
+
+        // 1) Check org exists
+        const { data: org, error: orgError } = await supabase
+          .from("organizations")
+          .select("id, org_code")
+          .eq("org_code", cleanOrgCode)
+          .maybeSingle();
+
+        if (orgError || !org) {
+          alert("Invalid organization code. Please check with your admin.");
+          setLoading(false);
+          return;
+        }
+
+        // 2) Create auth user
+        const { data: signUpData, error: signUpError } =
+          await supabase.auth.signUp({
+            email: cleanEmail,
+            password: cleanPassword,
+            options: {
+              data: {
+                full_name: cleanName,
+                role: "student",
+                org_code: cleanOrgCode,
+              },
             },
-          },
-        });
+          });
 
         if (signUpError) throw signUpError;
+
+        const user = signUpData?.user;
+        if (!user) {
+          throw new Error(
+            "Sign up succeeded but user is null. Check email confirmation settings."
+          );
+        }
+
+        // 3) Manually create profile
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert({
+            id: user.id,
+            email: cleanEmail,
+            full_name: cleanName,
+            role: "student",
+            org_code: org.org_code,
+            organization_id: org.id,
+          });
+
+        if (profileError) throw profileError;
 
         alert("Account created! Please login.");
         setIsSignUp(false);
@@ -61,9 +120,9 @@ const Login = () => {
         return;
       }
 
-      // -------------------------
-      // LOGIN
-      // -------------------------
+      // =========================
+      // LOGIN (STUDENT + TEACHER)
+      // =========================
       const { data: signInData, error: signInError } =
         await supabase.auth.signInWithPassword({
           email: cleanEmail,
@@ -72,22 +131,40 @@ const Login = () => {
 
       if (signInError) throw signInError;
 
-      const user = signInData.user;
+      const user = signInData?.user;
       if (!user) throw new Error("Could not load user");
 
-      // Fetch profile from DB (created by trigger using metadata)
-      const { data: profile, error: pErr } = await supabase
+      // Try to load profile
+      let { data: profile, error: pErr } = await supabase
         .from("profiles")
         .select("role")
         .eq("id", user.id)
         .maybeSingle();
 
+      // If profile missing (old accounts), create minimal one
+      if (!profile && !pErr) {
+        const roleFromMeta =
+          user.user_metadata?.role === "teacher" ? "teacher" : "student";
+
+        const { error: createProfileError } = await supabase
+          .from("profiles")
+          .insert({
+            id: user.id,
+            email: user.email,
+            full_name: user.user_metadata?.full_name || "",
+            role: roleFromMeta,
+          });
+
+        if (createProfileError) throw createProfileError;
+
+        profile = { role: roleFromMeta };
+      }
+
       if (pErr) throw pErr;
-      if (!profile) throw new Error("Profile missing. Check DB trigger.");
+      if (!profile) throw new Error("Profile missing");
 
       const dbRole = profile.role || "student";
 
-      // ✅ Redirect based on DB role (authoritative)
       if (dbRole === "teacher") {
         navigate("/teacher/dashboard");
       } else {
@@ -101,16 +178,18 @@ const Login = () => {
     }
   };
 
+  const roleLabel =
+    role === "student" ? "🎓 Student" : role === "teacher" ? "👨‍🏫 Teacher" : "User";
+
   return (
     <div className="login-container">
       <div className="login-card">
         <h2>{isSignUp ? "Create Account" : "Welcome Back"}</h2>
 
-        <span className="role-badge">
-          {role === "student" ? "🎓 Student" : "👨‍🏫 Teacher"}
-        </span>
+        <span className="role-badge">{roleLabel}</span>
 
         <form onSubmit={handleAuth}>
+          {/* Full Name only for signup */}
           {isSignUp && (
             <div className="form-group">
               <label>Full Name</label>
@@ -120,6 +199,20 @@ const Login = () => {
                 onChange={(e) => setFullName(e.target.value)}
                 required
                 placeholder="Enter your full name"
+              />
+            </div>
+          )}
+
+          {/* Org code only for student signup */}
+          {isSignUp && role === "student" && (
+            <div className="form-group">
+              <label>Organization Code</label>
+              <input
+                type="text"
+                value={organizationCode}
+                onChange={(e) => setOrganizationCode(e.target.value.toUpperCase())}
+                required
+                placeholder="Enter code given by organization"
               />
             </div>
           )}
@@ -152,18 +245,23 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="auth-toggle">
-          <p>
-            {isSignUp ? "Already have an account?" : "Don't have an account?"}
-            <button
-              type="button"
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="link-button"
-            >
-              {isSignUp ? "Sign In" : "Sign Up"}
-            </button>
-          </p>
-        </div>
+        {/* Signup toggle only for student */}
+        {role === "student" && (
+          <div className="auth-toggle">
+            <p>
+              {isSignUp
+                ? "Already have an account?"
+                : "Don't have an account?"}
+              <button
+                type="button"
+                onClick={() => setIsSignUp(!isSignUp)}
+                className="link-button"
+              >
+                {isSignUp ? "Sign In" : "Sign Up"}
+              </button>
+            </p>
+          </div>
+        )}
 
         <button
           type="button"
@@ -171,6 +269,14 @@ const Login = () => {
           onClick={() => navigate("/")}
         >
           ← Change Role
+        </button>
+
+        <button
+          type="button"
+          className="link-button"
+          onClick={() => navigate("/forgot-password")}
+        >
+          Forgot Password?
         </button>
       </div>
     </div>

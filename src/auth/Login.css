@@ -8,13 +8,60 @@
 }
 
 .login-card {
-  background: white;
-  border-radius: 1rem;
+  position: relative;
+   background: linear-gradient(135deg, #71c4c7 0%, #f3f4ff 100%);
+  border-radius: 3rem;
   padding: 2.5rem;
   max-width: 450px;
   width: 100%;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.15);
+  overflow: hidden;
 }
+
+/* Bubble effects */
+.login-card::before,
+.login-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  filter: blur(2px);
+}
+
+/* Big bubble */
+.login-card::before {
+  width: 160px;
+  height: 160px;
+  top: -60px;
+  right: -60px;
+}
+
+/* Small bubble */
+.login-card::after {
+  width: 90px;
+  height: 90px;
+  bottom: -30px;
+  left: -30px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Optional floating animation */
+@keyframes floatBubble {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.login-card::before {
+  animation: floatBubble 6s ease-in-out infinite;
+}
+
+.login-card::after {
+  animation: floatBubble 8s ease-in-out infinite;
+}
+
 
 .login-header {
   text-align: center;
