@@ -16,28 +16,28 @@ A full-stack attendance management system built with React, Vite, and Supabase.
 ## Screenshots
 
 ### Main Login
-![Main Login](docs/screenshorts/main%20login%20page.png)
+![Main Login](images/screenshorts/main%20login%20page.png)
 
 ### Admin Panel
-![Admin Dashboard](docs/screenshorts/admin/admin%20dashboard.png)
-![Admin Panel](docs/screenshorts/admin/admin%20pannel.png)
-![Teacher Registration](docs/screenshorts/admin/teacher%20register%20.png)
-![Multi-Factor Authentication](docs/screenshorts/admin/multi%20factor%20authentication.png)
-![Student Management](docs/screenshorts/admin/stundent%20management.png)
-![Analysis](docs/screenshorts/admin/analysis.png)
+![Admin Dashboard](images/screenshorts/admin/admin%20dashboard.png)
+![Admin Panel](images/screenshorts/admin/admin%20pannel.png)
+![Teacher Registration](images/screenshorts/admin/teacher%20register%20.png)
+![Multi-Factor Authentication](images/screenshorts/admin/multi%20factor%20authentication.png)
+![Student Management](images/screenshorts/admin/stundent%20management.png)
+![Analysis](images/screenshorts/admin/analysis.png)
 
 ### Teacher Dashboard
-![Teacher Dashboard](docs/screenshorts/teacher/teachers%20dashboard.png)
-![Create Class](docs/screenshorts/teacher/create%20class.png)
-![Manage Students](docs/screenshorts/teacher/Manage%20Student%20in%20class.png)
-![Attendance Report](docs/screenshorts/teacher/Attendence%20Report.png)
+![Teacher Dashboard](images/screenshorts/teacher/teachers%20dashboard.png)
+![Create Class](images/screenshorts/teacher/create%20class.png)
+![Manage Students](images/screenshorts/teacher/Manage%20Student%20in%20class.png)
+![Attendance Report](images/screenshorts/teacher/Attendence%20Report.png)
 
 ### Student Dashboard
-![Student Dashboard](docs/screenshorts/student%20dashboard.png)
-![Student Classes](docs/screenshorts/student%20classes.png)
+![Student Dashboard](images/screenshorts/student%20dashboard.png)
+![Student Classes](images/screenshorts/student%20classes.png)
 
 ### Database Structure
-![Database Schema](docs/screenshorts/database.png)
+![Database Schema](images/screenshorts/database.png)
 
 ---
 
